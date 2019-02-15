@@ -6,7 +6,7 @@ eureka:
 
 ##===== server port =====##
 server:
-  port: 80
+  port: 8088
 
 ##===== application name =====##
 spring:
