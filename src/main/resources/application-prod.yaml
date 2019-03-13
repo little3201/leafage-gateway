@@ -1,0 +1,19 @@
+##===== routing configuration =====##
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        #-----------------------------------#
+        - id: host_route
+          uri: lb://abeille-basic-authority
+          predicates:
+            - Path=/user
+        #-----------------------------------#
+        - id: host_route
+          uri: lb://abeille-basic-profile
+          predicates:
+            - Path=/group
