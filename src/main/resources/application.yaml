@@ -6,7 +6,7 @@ eureka:
 
 ##===== server port =====##
 server:
-  port: 80
+  port: 8088
 
 ##===== application name =====##
 spring:
@@ -25,8 +25,6 @@ spring:
           uri: lb://abeille-basic
           predicates:
             - Path=/basic
-          filters:
-            - RewritePath=/basic/(?<segment>.*), /$\{segment}
           #-----------------------------------#
         - id: host_route
           uri: http://127.0.0.1:8761
