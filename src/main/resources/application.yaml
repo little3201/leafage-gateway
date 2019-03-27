@@ -1,9 +1,3 @@
-##===== load Eureka registry center =====##
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
-
 ##===== server port =====##
 server:
   port: 8088
@@ -12,3 +6,11 @@ server:
 spring:
   profiles:
     active: prod
+
+  application:
+    name: abeille-gateway
+
+  cloud:
+    consul:
+      discovery:
+        register: false
