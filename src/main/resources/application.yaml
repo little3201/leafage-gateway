@@ -1,6 +1,6 @@
 ##===== server port =====##
 server:
-  port: 8088
+  port: 8760
 
 ##===== active profiles =====##
 spring:
