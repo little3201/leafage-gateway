@@ -11,8 +11,9 @@
     <groupId>top.abeille</groupId>
     <artifactId>abeille-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>abeille-gateway</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Gateway for abeille</description>
 
     <properties>
         <java.version>1.8</java.version>
