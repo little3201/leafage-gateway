@@ -14,6 +14,6 @@ spring:
             - Path=/user
         #-----------------------------------#
         - id: host_route
-          uri: lb://abeille-basic-profile
+          uri: lb://abeille-basic-payment
           predicates:
             - Path=/group
