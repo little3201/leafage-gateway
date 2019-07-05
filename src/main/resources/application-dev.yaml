@@ -9,11 +9,11 @@ spring:
       routes:
         #-----------------------------------#
         - id: host_route
-          uri: lb://abeille-basic-authority
+          uri: lb://abeille-basic-hypervisor
           predicates:
-            - Path=/user
+            - Path=/hypervisor
         #-----------------------------------#
         - id: host_route
-          uri: lb://abeille-basic-payment
+          uri: lb://abeille-basic-assets
           predicates:
             - Path=/group
