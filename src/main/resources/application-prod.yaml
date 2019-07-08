@@ -8,12 +8,21 @@ spring:
           enabled: true
       routes:
         #-----------------------------------#
-        - id: host_route
+        - id: hypervisor_route
           uri: lb://abeille-basic-hypervisor
           predicates:
             - Path=/hypervisor
+          filters:
+            - StripPrefix= 1
         #-----------------------------------#
-        - id: host_route
+        - id: assets_route
           uri: lb://abeille-basic-assets
           predicates:
-            - Path=/group
+            - Path=/assets
+        #-----------------------------------#
+        - id: server_route
+          uri: lb://abeille-secure-server
+          predicates:
+            - Path=/server/**
+          filters:
+            - StripPrefix= 1
