@@ -14,11 +14,13 @@ spring:
             - Path=/hypervisor
           filters:
             - StripPrefix= 1
+
         #-----------------------------------#
         - id: assets_route
           uri: lb://abeille-basic-assets
           predicates:
             - Path=/assets
+
         #-----------------------------------#
         - id: server_route
           uri: lb://abeille-secure-server
