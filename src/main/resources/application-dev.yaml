@@ -19,7 +19,9 @@ spring:
         - id: assets_route
           uri: lb://abeille-basic-assets
           predicates:
-            - Path=/assets
+            - Path=/assets/**
+          filters:
+            - StripPrefix= 1
 
         #-----------------------------------#
         - id: server_route
