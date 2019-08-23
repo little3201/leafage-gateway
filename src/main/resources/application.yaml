@@ -5,14 +5,14 @@ server:
 ##===== active profiles =====##
 spring:
   profiles:
-    active: dev
+    active: prod
 
   application:
     name: abeille-gateway
 
   cloud:
     consul:
-      host: 127.0.0.1
+      host: 122.152.218.103
       port: 8500
       discovery:
         register: false
