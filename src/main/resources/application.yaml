@@ -9,10 +9,3 @@ spring:
 
   application:
     name: abeille-gateway
-
-  cloud:
-    consul:
-      host: 122.152.218.103
-      port: 8500
-      discovery:
-        register: false

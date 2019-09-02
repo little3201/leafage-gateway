@@ -1,6 +1,13 @@
-##===== routing configuration =====##
 spring:
   cloud:
+    ##===== consul configuration =====##
+    consul:
+      host: 192.168.248.254
+      port: 8500
+      discovery:
+        register: false
+
+    ##===== gateway rules =====##
     gateway:
       discovery:
         locator:
