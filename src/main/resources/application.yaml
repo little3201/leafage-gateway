@@ -5,7 +5,7 @@ server:
 ##===== active profiles =====##
 spring:
   profiles:
-    active: dev
+    active: prod
 
   application:
     name: abeille-gateway
