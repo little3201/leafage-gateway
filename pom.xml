@@ -9,7 +9,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>top.abeille.gateway</groupId>
     <artifactId>abeille-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
