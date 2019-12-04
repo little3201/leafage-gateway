@@ -17,7 +17,7 @@ spring:
         - id: hypervisor_route
           uri: lb://ABEILLE-BASIC-HYPERVISOR
           predicates:
-            - Path=/hypervisor/{segment}
+            - Path=/hypervisor/**
           filters:
             - StripPrefix= 1
 
@@ -25,7 +25,7 @@ spring:
         - id: assets_route
           uri: lb://ABEILLE-BASIC-ASSETS
           predicates:
-            - Path=/assets/{segment}
+            - Path=/assets/**
           filters:
             - StripPrefix= 1
 
@@ -33,6 +33,6 @@ spring:
         - id: server_route
           uri: lb://ABEILLE-SECURE-SERVER
           predicates:
-            - Path=/server/{segment}
+            - Path=/server/**
           filters:
             - StripPrefix= 1
