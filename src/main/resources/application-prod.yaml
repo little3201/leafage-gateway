@@ -11,12 +11,11 @@ spring:
     gateway:
       discovery:
         locator:
-          lower-case-service-id: true
           enabled: true
       routes:
         #-----------------------------------#
         - id: hypervisor_route
-          uri: lb://abeille-basic-hypervisor
+          uri: lb://ABEILLE-BASIC-HYPERVISOR
           predicates:
             - Path=/hypervisor/**
           filters:
@@ -24,7 +23,7 @@ spring:
 
         #-----------------------------------#
         - id: assets_route
-          uri: lb://abeille-basic-assets
+          uri: lb://ABEILLE-BASIC-ASSETS
           predicates:
             - Path=/assets/**
           filters:
@@ -32,7 +31,7 @@ spring:
 
         #-----------------------------------#
         - id: server_route
-          uri: lb://abeille-secure-server
+          uri: lb://ABEILLE-SECURE-SERVER
           predicates:
             - Path=/server/**
           filters:
