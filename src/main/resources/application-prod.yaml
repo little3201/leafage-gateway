@@ -9,6 +9,11 @@ spring:
 
     ##===== gateway rules =====##
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
       discovery:
         locator:
           enabled: true
