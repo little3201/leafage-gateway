@@ -1,0 +1,43 @@
+spring:
+  cloud:
+    ##===== consul configuration =====##
+    consul:
+      host: 192.168.248.254
+      port: 8500
+      discovery:
+        register: false
+
+    ##===== gateway rules =====##
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        #-----------------------------------#
+        - id: hypervisor_route
+          uri: lb://ABEILLE-BASIC-HYPERVISOR
+          predicates:
+            - Path=/hypervisor/**
+          filters:
+            - StripPrefix= 1
+
+        #-----------------------------------#
+        - id: assets_route
+          uri: lb://ABEILLE-BASIC-ASSETS
+          predicates:
+            - Path=/assets/**
+          filters:
+            - StripPrefix= 1
+
+        #-----------------------------------#
+        - id: server_route
+          uri: lb://ABEILLE-SECURE-SERVER
+          predicates:
+            - Path=/server/**
+          filters:
+            - StripPrefix= 1
