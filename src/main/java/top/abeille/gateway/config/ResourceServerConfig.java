@@ -3,26 +3,18 @@
  */
 package top.abeille.gateway.config;
 
-import com.nimbusds.oauth2.sdk.util.StringUtils;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
-
 /**
  * oauth2 resource server common
  *
  * @author liwenqiang 2018/12/31 14:42
  **/
-@Configuration
+//@Configuration
 class ResourceServerConfig {
 
     /**
      * 定义OAuth2请求匹配器
      */
-    private static class Oauth2RequestedMatcher implements ServerWebExchangeMatcher {
+    /*private static class Oauth2RequestedMatcher implements ServerWebExchangeMatcher {
         @Override
         public Mono<MatchResult> matches(ServerWebExchange serverWebExchange) {
             // 判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,
@@ -34,7 +26,7 @@ class ResourceServerConfig {
 //            return haveOauth2Token || haveAccessToken;
             return null;
         }
-    }
+    }*/
 
 
 }
