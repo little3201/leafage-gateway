@@ -2,7 +2,7 @@ spring:
   cloud:
     ##===== consul configuration =====##
     consul:
-      host: 192.168.248.254
+      host: 172.20.10.6
       port: 8500
       discovery:
         register: false
@@ -20,7 +20,7 @@ spring:
       routes:
         #-----------------------------------#
         - id: hypervisor_route
-          uri: lb://ABEILLE-BASIC-HYPERVISOR
+          uri: lb://abeille-basic-hypervisor
           predicates:
             - Path=/hypervisor/**
           filters:
@@ -28,7 +28,7 @@ spring:
 
         #-----------------------------------#
         - id: assets_route
-          uri: lb://ABEILLE-BASIC-ASSETS
+          uri: lb://abeille-basic-assets
           predicates:
             - Path=/assets/**
           filters:
