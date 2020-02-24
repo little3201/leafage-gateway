@@ -3,26 +3,22 @@
  */
 package top.abeille.gateway.filter;
 
-import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
-
 /**
  * 跨域配置
  *
  * @author liwenqiang 2019-06-12
  */
-public class AbeilleFilter implements GlobalFilter {
+public class AbeilleFilter {
+//public class AbeilleFilter implements GlobalFilter {
 
 
-    @Override
+    /*@Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return null;
-    }
+        String accessToken = exchange.getRequest().getQueryParams().getFirst("access_token");
+        if(StringUtils.isBlank(accessToken)){
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
+        }
+        return chain.filter(exchange);
+    }*/
 }
