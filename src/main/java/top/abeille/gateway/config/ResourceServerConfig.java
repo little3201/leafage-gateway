@@ -26,10 +26,10 @@ class ResourceServerConfig {
         @Override
         public Mono<MatchResult> matches(ServerWebExchange serverWebExchange) {
             // 判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,
-            String auth = serverWebExchange.getAttribute(HttpHeaders.AUTHORIZATION);
-            boolean haveOauth2Token = StringUtils.isNotBlank(auth) && auth.startsWith(OAuth2AccessToken.TokenType.BEARER.getValue());
+            String authorization = serverWebExchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+            boolean haveOauth2Token = StringUtils.isNotBlank(authorization) && authorization.startsWith(OAuth2AccessToken.TokenType.BEARER.getValue());
             // 或者是请求参数中包含access_token参数,满足其中一个则匹配成功
-            String accessToken = serverWebExchange.getAttribute("access_token");
+            String accessToken = serverWebExchange.getRequest().getHeaders().getFirst("access_token");
             boolean haveAccessToken = StringUtils.isNotBlank(accessToken);
             if (haveOauth2Token || haveAccessToken) {
                 return MatchResult.match();

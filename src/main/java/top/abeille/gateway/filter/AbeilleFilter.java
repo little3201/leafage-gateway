@@ -17,10 +17,9 @@ import reactor.core.publisher.Mono;
  */
 public class AbeilleFilter implements GlobalFilter {
 
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String accessToken = exchange.getRequest().getQueryParams().getFirst("access_token");
+        String accessToken = exchange.getRequest().getHeaders().getFirst("access_token");
         if (StringUtils.isBlank(accessToken)) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
