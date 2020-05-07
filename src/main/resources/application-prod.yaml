@@ -31,6 +31,6 @@ spring:
         - id: assets_route
           uri: lb://abeille-basic-assets
           predicates:
-            - Path=/assets/{segment},/oauth/{segment}
+            - Path=/assets/{segment},/assets/oauth/{segment}
           filters:
             - StripPrefix= 1
