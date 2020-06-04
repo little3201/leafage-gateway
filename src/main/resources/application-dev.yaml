@@ -2,35 +2,7 @@ spring:
   cloud:
     ##===== consul configuration =====##
     consul:
-      host: 172.20.10.6
+      host: 127.0.0.1
       port: 8500
       discovery:
         register: false
-
-    ##===== gateway rules =====##
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedHeaders: "*"
-            allowedOrigins: "*"
-            allowedMethods: "*"
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        #-----------------------------------#
-        - id: hypervisor_route
-          uri: lb://abeille-basic-hypervisor
-          predicates:
-            - Path=/hypervisor/**
-          filters:
-            - StripPrefix= 1
-
-        #-----------------------------------#
-        - id: assets_route
-          uri: lb://abeille-basic-assets
-          predicates:
-            - Path=/assets/**
-          filters:
-            - StripPrefix= 1

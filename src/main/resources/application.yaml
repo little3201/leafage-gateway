@@ -5,7 +5,40 @@ server:
 ##===== active profiles =====##
 spring:
   profiles:
-    active: prod
+    active: dev
 
   application:
     name: abeille-gateway
+
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowedMethods:
+              - OPTIONS
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        #-----------------------------------#
+        - id: hypervisor_route
+          uri: lb://abeille-basic-hypervisor
+          predicates:
+            - Path=/hypervisor/**
+          filters:
+            - StripPrefix= 1
+
+        #-----------------------------------#
+        - id: assets_route
+          uri: lb://abeille-basic-assets
+          predicates:
+            - Path=/assets/**
+          filters:
+            - StripPrefix= 1
