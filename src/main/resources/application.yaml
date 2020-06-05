@@ -23,9 +23,6 @@ spring:
               - POST
               - PUT
               - DELETE
-      discovery:
-        locator:
-          enabled: true
       routes:
         #-----------------------------------#
         - id: hypervisor_route
