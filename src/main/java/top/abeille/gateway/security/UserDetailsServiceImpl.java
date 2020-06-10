@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import top.abeille.gateway.api.HypervisorApi;
 import top.abeille.gateway.api.bo.UserBO;
@@ -70,8 +71,10 @@ public class UserDetailsServiceImpl implements ReactiveUserDetailsService {
      */
     private Mono<UserDetails> loadUser(Mono<UserBO> infoMono) {
         // 查配置的角色
-        Mono<ArrayList<GrantedAuthority>> authorityList = infoMono.flatMap(userBO -> hypervisorApi.retrieveRoles(userBO.getBusinessId())
-                .collect(ArrayList::new, (roleIdList, businessId) -> roleIdList.add(new SimpleGrantedAuthority(businessId))));
+        Mono<ArrayList<GrantedAuthority>> authorityList = infoMono.flatMap(userBO ->
+                // 使用Flux::fromIterable转换成Flux<String>
+                hypervisorApi.retrieveRoles(userBO.getBusinessId()).flatMapMany(Flux::fromIterable)
+                        .collect(ArrayList::new, (roleIdList, businessId) -> roleIdList.add(new SimpleGrantedAuthority(businessId))));
         // 构造用户信息
         return authorityList.zipWith(infoMono, (authorities, userInfo) ->
                 new User(StringUtils.isNotBlank(userInfo.getMobile()) ? userInfo.getMobile() : userInfo.getEmail(), userInfo.getPassword(),

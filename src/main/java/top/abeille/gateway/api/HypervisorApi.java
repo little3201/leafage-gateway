@@ -6,9 +6,10 @@ package top.abeille.gateway.api;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import top.abeille.gateway.api.bo.UserBO;
+
+import java.util.ArrayList;
 
 /**
  * 用户api
@@ -43,5 +44,5 @@ public interface HypervisorApi {
      * @return 角色业务ID集合
      */
     @GetMapping("/role/relation/{businessId}")
-    Flux<String> retrieveRoles(@RequestParam String businessId);
+    Mono<ArrayList<String>> retrieveRoles(@RequestParam String businessId);
 }
