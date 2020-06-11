@@ -5,7 +5,7 @@ package top.abeille.gateway.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import reactor.core.publisher.Mono;
 import top.abeille.gateway.api.bo.UserBO;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author liwenqiang 2019-03-03 22:55
  **/
-@FeignClient(name = "abeille-basic-hypervisor", fallback = HypervisorApiFallBack.class)
+@FeignClient(name = "abeille-basic-hypervisor")
 public interface HypervisorApi {
 
     /**
@@ -26,7 +26,7 @@ public interface HypervisorApi {
      * @return 如果查询到数据，返回查询到的信息，否则返回404状态码
      */
     @GetMapping("/user/mobile/{mobile}")
-    Mono<UserBO> fetchUserByMobile(@RequestParam String mobile);
+    Mono<UserBO> fetchUserByMobile(@PathVariable("mobile") String mobile);
 
     /**
      * 根据传入的邮箱: email 查询信息
@@ -35,14 +35,14 @@ public interface HypervisorApi {
      * @return 如果查询到数据，返回查询到的信息，否则返回404状态码
      */
     @GetMapping("/user/email/{email}")
-    Mono<UserBO> fetchUserByEmail(@RequestParam String email);
+    Mono<UserBO> fetchUserByEmail(@PathVariable("email") String email);
 
     /**
      * 根据用户业务ID查询角色信息
      *
-     * @param businessId 用户业务ID
+     * @param userBusinessId 用户业务ID
      * @return 角色业务ID集合
      */
-    @GetMapping("/role/relation/{businessId}")
-    Mono<ArrayList<String>> retrieveRoles(@RequestParam String businessId);
+    @GetMapping("/role/relation/{userBusinessId}")
+    Mono<ArrayList<String>> retrieveRoles(@PathVariable String userBusinessId);
 }

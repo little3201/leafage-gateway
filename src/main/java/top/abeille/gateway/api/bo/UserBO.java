@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 public class UserBO implements Serializable {
 
+    private static final long serialVersionUID = 3745288479594725090L;
     /**
      * 业务ID
      */

@@ -3,10 +3,10 @@
  */
 package top.abeille.gateway.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
@@ -32,18 +32,14 @@ import java.security.interfaces.RSAPublicKey;
  * @author liwenqiang 2019/7/12 17:51
  */
 @EnableWebFluxSecurity
-@EnableReactiveMethodSecurity
 public class AbeilleSecurityConfig {
 
     private static final String KEY_STORE = "jwt/abeille-top-jwt.jks";
     private static final String KEY_PASS = "abeille-top";
     private static final String ALIAS = "abeille-top-jwt";
 
-    private final HypervisorApi hypervisorApi;
-
-    public AbeilleSecurityConfig(HypervisorApi hypervisorApi) {
-        this.hypervisorApi = hypervisorApi;
-    }
+    @Autowired
+    private HypervisorApi hypervisorApi;
 
     /**
      * 密码配置，使用BCryptPasswordEncoder
