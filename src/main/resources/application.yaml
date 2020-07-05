@@ -17,6 +17,7 @@ spring:
           '[/**]':
             allowedHeaders: "*"
             allowedOrigins: "*"
+            allowCredentials: true
             allowedMethods:
               - OPTIONS
               - GET
