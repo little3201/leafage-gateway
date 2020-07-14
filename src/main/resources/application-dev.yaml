@@ -4,3 +4,27 @@ spring:
     consul:
       host: 127.0.0.1
       port: 8500
+      discovery:
+        register: false
+
+    ##===== gateway rules =====##
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        #-----------------------------------#
+        - id: hypervisor_route
+          uri: lb://ABEILLE-BASIC-HYPERVISOR
+          predicates:
+            - Path=/hypervisor/**
+          filters:
+            - StripPrefix= 1
+
+        #-----------------------------------#
+        - id: assets_route
+          uri: lb://ABEILLE-BASIC-ASSETS
+          predicates:
+            - Path=/assets/**
+          filters:
+            - StripPrefix= 1
