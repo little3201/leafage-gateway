@@ -1,11 +1,12 @@
 # Start with a base image containing Java runtime
-FROM openjdk:8-jdk-alpine
+
+FROM openjdk:11-jdk-alpine
 
 # Add Maintainer Info
 LABEL maintainer="little3201@gmail.com"
 
 # Add param to use in anywhere
-ARG JAR_NAME
+ARG JAR_NAME=abeille-gateway
 ARG ACTIVE=dev
 
 # Add a volume pointing to /tmp

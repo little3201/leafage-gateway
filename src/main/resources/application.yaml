@@ -9,3 +9,34 @@ spring:
 
   application:
     name: abeille-gateway
+
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowCredentials: true
+            allowedMethods:
+              - OPTIONS
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        #-----------------------------------#
+        - id: hypervisor_route
+          uri: lb://abeille-basic-hypervisor
+          predicates:
+            - Path=/hypervisor/**
+          filters:
+            - StripPrefix= 1
+
+        #-----------------------------------#
+        - id: assets_route
+          uri: lb://abeille-basic-assets
+          predicates:
+            - Path=/assets/**
+          filters:
+            - StripPrefix= 1

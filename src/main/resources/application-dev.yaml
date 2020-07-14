@@ -28,11 +28,3 @@ spring:
             - Path=/assets/**
           filters:
             - StripPrefix= 1
-
-        #-----------------------------------#
-        - id: server_route
-          uri: lb://ABEILLE-SECURE-SERVER
-          predicates:
-            - Path=/server/**
-          filters:
-            - StripPrefix= 1
