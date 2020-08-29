@@ -3,10 +3,10 @@
  */
 package top.abeille.gateway.filter;
 
-import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -17,15 +17,12 @@ import reactor.core.publisher.Mono;
  */
 public class AbeilleFilter implements GlobalFilter {
 
-    private static final String ACCESS_TOKEN = "access_token";
+    private final Logger log = LoggerFactory.getLogger(AbeilleFilter.class);
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String param = exchange.getRequest().getQueryParams().getFirst(ACCESS_TOKEN);
-        if (StringUtils.isBlank(param)) {
-            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
-        }
+        String path = exchange.getRequest().getURI().getPath();
+        log.info("请求路径：{}", path);
         return chain.filter(exchange);
     }
 }
