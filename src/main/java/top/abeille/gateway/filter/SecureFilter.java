@@ -15,14 +15,14 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 网关过滤配置
+ * 安全请求过滤器
  *
  * @author liwenqiang 2019-10-29
  */
 @Component
-public class AbeilleFilter implements GlobalFilter, Ordered {
+public class SecureFilter implements GlobalFilter, Ordered {
 
-    private final Logger log = LoggerFactory.getLogger(AbeilleFilter.class);
+    private final Logger log = LoggerFactory.getLogger(SecureFilter.class);
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
