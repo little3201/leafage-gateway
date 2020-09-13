@@ -25,7 +25,7 @@ public class HypervisorApiImpl implements HypervisorApi {
     @Override
     public Mono<UserDetails> findByUsername(String username) {
         Asserts.notBlank(username, "username");
-        return clientBuilder.build().get().uri("/user/load/{username}", username)
+        return clientBuilder.build().get().uri("/user/info/{username}", username)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve().bodyToMono(UserDetails.class);
     }
