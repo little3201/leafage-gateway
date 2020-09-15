@@ -3,10 +3,7 @@
  */
 package top.abeille.gateway.api;
 
-import org.apache.http.util.Asserts;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 /**
@@ -22,10 +19,5 @@ public interface HypervisorApi {
      * @param username 用户账号
      * @return 如果查询到数据，返回查询到的信息，否则返回204状态码
      */
-    default Mono<UserDetails> findByUsername(String username) {
-        Asserts.notBlank(username, "username");
-        return WebClient.create("http://abeille-basic-hypervisor").get().uri("/user/info/{username}", username)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve().bodyToMono(UserDetails.class);
-    }
+    Mono<UserDetails> findByUsername(String username);
 }
