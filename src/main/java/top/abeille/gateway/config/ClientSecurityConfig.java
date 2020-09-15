@@ -59,6 +59,7 @@ public class ClientSecurityConfig {
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
+                .pathMatchers(HttpMethod.GET, "/assets/**").permitAll()
                 .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
