@@ -17,7 +17,6 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import org.springframework.security.web.server.authentication.ServerAuthenticationFailureHandler;
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.HttpStatusReturningServerLogoutSuccessHandler;
-import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import top.abeille.gateway.api.HypervisorApi;
 import top.abeille.gateway.handler.AbeilleFailureHandler;
 import top.abeille.gateway.handler.AbeilleSuccessHandler;
@@ -65,7 +64,7 @@ public class ClientSecurityConfig {
                 .formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
                         .authenticationFailureHandler(authenticationFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
-                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()));
+                .csrf(c -> c.disable());
         return http.build();
     }
 
