@@ -64,7 +64,7 @@ public class ClientSecurityConfig {
                 .formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
                         .authenticationFailureHandler(authenticationFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
-                .csrf(c -> c.disable());
+                .csrf(ServerHttpSecurity.CsrfSpec::disable);
         return http.build();
     }
 
