@@ -17,6 +17,7 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import org.springframework.security.web.server.authentication.ServerAuthenticationFailureHandler;
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.HttpStatusReturningServerLogoutSuccessHandler;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import top.abeille.gateway.api.HypervisorApi;
 import top.abeille.gateway.handler.AbeilleFailureHandler;
 import top.abeille.gateway.handler.AbeilleSuccessHandler;
@@ -57,14 +58,14 @@ public class ClientSecurityConfig {
      */
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
-                .pathMatchers(HttpMethod.GET, "/assets/**").permitAll()
-                .anyExchange().authenticated())
-                .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
-                        .authenticationFailureHandler(authenticationFailureHandler()))
+        http.formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
+                .authenticationFailureHandler(authenticationFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
-                .csrf(ServerHttpSecurity.CsrfSpec::disable);
+                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+                .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
+                        .pathMatchers(HttpMethod.GET, "/assets/**").permitAll()
+                        .anyExchange().authenticated())
+                .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
     }
 
