@@ -1,6 +1,8 @@
 ##===== server port =====##
 server:
   port: 8760
+  http2:
+    enabled: true
 
 ##===== active profiles =====##
 spring:

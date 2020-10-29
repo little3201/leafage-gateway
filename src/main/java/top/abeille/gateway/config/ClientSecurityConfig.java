@@ -58,14 +58,14 @@ public class ClientSecurityConfig {
      */
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
-                .pathMatchers(HttpMethod.GET, "/assets/**").permitAll()
-                .anyExchange().authenticated())
-                .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
-                        .authenticationFailureHandler(authenticationFailureHandler()))
+        http.formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
+                .authenticationFailureHandler(authenticationFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
-                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()));
+                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+                .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
+                        .pathMatchers(HttpMethod.GET, "/assets/**").permitAll()
+                        .anyExchange().authenticated())
+                .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
     }
 
