@@ -5,6 +5,7 @@
 package top.abeille.gateway.service;
 
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import reactor.core.publisher.Mono;
 import top.abeille.gateway.api.HypervisorApi;
@@ -19,7 +20,7 @@ public class AbeilleUserDetailsService implements ReactiveUserDetailsService {
 
     @Override
     public Mono<UserDetails> findByUsername(String username) {
-        return hypervisorApi.findByUsername(username);
+        return hypervisorApi.findByUsername(username).map(User.UserBuilder::build);
     }
 
 }
