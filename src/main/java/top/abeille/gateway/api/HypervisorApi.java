@@ -3,7 +3,7 @@
  */
 package top.abeille.gateway.api;
 
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import reactor.core.publisher.Mono;
 
 /**
@@ -19,5 +19,5 @@ public interface HypervisorApi {
      * @param username 用户账号
      * @return 如果查询到数据，返回查询到的信息，否则返回204状态码
      */
-    Mono<UserDetails> findByUsername(String username);
+    Mono<User.UserBuilder> findByUsername(String username);
 }
