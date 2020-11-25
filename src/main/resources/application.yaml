@@ -29,7 +29,7 @@ spring:
       routes:
         #-----------------------------------#
         - id: hypervisor_route
-          uri: lb://abeille-basic-hypervisor
+          uri: lb://hypervisor
           predicates:
             - Path=/hypervisor/**
           filters:
@@ -37,7 +37,7 @@ spring:
 
         #-----------------------------------#
         - id: assets_route
-          uri: lb://abeille-basic-assets
+          uri: lb://assets
           predicates:
             - Path=/assets/**
           filters:
