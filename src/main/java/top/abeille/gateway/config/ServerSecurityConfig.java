@@ -22,7 +22,7 @@ import org.springframework.security.web.server.csrf.CookieServerCsrfTokenReposit
 import top.abeille.gateway.api.HypervisorApi;
 import top.abeille.gateway.handler.AbeilleFailureHandler;
 import top.abeille.gateway.handler.AbeilleSuccessHandler;
-import top.abeille.gateway.service.AbeilleUserDetailsService;
+import top.abeille.gateway.service.JdbcUserDetailsService;
 
 /**
  * spring security 配置
@@ -51,7 +51,7 @@ public class ServerSecurityConfig {
      */
     @Bean
     public ReactiveUserDetailsService userDetailsService() {
-        return new AbeilleUserDetailsService(hypervisorApi);
+        return new JdbcUserDetailsService(hypervisorApi);
     }
 
     /**
