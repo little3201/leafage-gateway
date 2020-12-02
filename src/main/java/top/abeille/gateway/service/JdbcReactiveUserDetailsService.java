@@ -15,11 +15,11 @@ import top.abeille.gateway.api.HypervisorApi;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class JdbcUserDetailsService implements ReactiveUserDetailsService {
+public class JdbcReactiveUserDetailsService implements ReactiveUserDetailsService {
 
     private final HypervisorApi hypervisorApi;
 
-    public JdbcUserDetailsService(HypervisorApi hypervisorApi) {
+    public JdbcReactiveUserDetailsService(HypervisorApi hypervisorApi) {
         this.hypervisorApi = hypervisorApi;
     }
 
