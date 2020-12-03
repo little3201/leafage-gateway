@@ -13,7 +13,7 @@ import org.springframework.web.reactive.function.client.WebClient;
  * @author liwenqiang
  */
 @SpringBootApplication
-public class AbeilleGatewayApplication {
+public class GatewayApplication {
 
     @Bean
     @LoadBalanced
@@ -22,7 +22,7 @@ public class AbeilleGatewayApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(AbeilleGatewayApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
 }
