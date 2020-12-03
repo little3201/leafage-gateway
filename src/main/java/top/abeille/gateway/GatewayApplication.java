@@ -4,7 +4,7 @@
 package top.abeille.gateway;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,8 +12,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 /**
  * @author liwenqiang
  */
-@SpringCloudApplication
-public class AbeilleGatewayApplication {
+@SpringBootApplication
+public class GatewayApplication {
 
     @Bean
     @LoadBalanced
@@ -22,7 +22,7 @@ public class AbeilleGatewayApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(AbeilleGatewayApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
 }

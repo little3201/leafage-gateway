@@ -21,7 +21,7 @@ import org.springframework.security.web.server.csrf.CookieServerCsrfTokenReposit
 import top.abeille.gateway.api.HypervisorApi;
 import top.abeille.gateway.handler.AbeilleFailureHandler;
 import top.abeille.gateway.handler.AbeilleSuccessHandler;
-import top.abeille.gateway.service.AbeilleUserDetailsService;
+import top.abeille.gateway.service.JdbcReactiveUserDetailsService;
 
 /**
  * spring security 配置
@@ -29,11 +29,11 @@ import top.abeille.gateway.service.AbeilleUserDetailsService;
  * @author liwenqiang 2019/7/12 17:51
  */
 @EnableWebFluxSecurity
-public class ClientSecurityConfig {
+public class ServerSecurityConfig {
 
     private final HypervisorApi hypervisorApi;
 
-    public ClientSecurityConfig(HypervisorApi hypervisorApi) {
+    public ServerSecurityConfig(HypervisorApi hypervisorApi) {
         this.hypervisorApi = hypervisorApi;
     }
 
@@ -50,7 +50,7 @@ public class ClientSecurityConfig {
      */
     @Bean
     public ReactiveUserDetailsService userDetailsService() {
-        return new AbeilleUserDetailsService(hypervisorApi);
+        return new JdbcReactiveUserDetailsService(hypervisorApi);
     }
 
     /**
