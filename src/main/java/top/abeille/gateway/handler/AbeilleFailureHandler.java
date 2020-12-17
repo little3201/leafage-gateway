@@ -18,22 +18,24 @@ public class AbeilleFailureHandler implements ServerAuthenticationFailureHandler
     @Override
     public Mono<Void> onAuthenticationFailure(WebFilterExchange webFilterExchange, AuthenticationException exception) {
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
+        DataBuffer buffer;
         if (exception instanceof UsernameNotFoundException) {
             response.setStatusCode(HttpStatus.NO_CONTENT);
-            return writeErrorMessage(response, "User Not Found");
+            buffer = writeErrorMessage(response, "User Not Found");
         } else if (exception instanceof BadCredentialsException) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
-            return writeErrorMessage(response, "Bad Credentials");
+            buffer = writeErrorMessage(response, "Bad Credentials");
         } else if (exception instanceof LockedException) {
             response.setStatusCode(HttpStatus.LOCKED);
-            return writeErrorMessage(response, "User Locked");
+            buffer = writeErrorMessage(response, "User Locked");
+        } else {
+            response.setStatusCode(HttpStatus.BAD_REQUEST);
+            buffer = writeErrorMessage(response, "Service Unavailable");
         }
-        response.setStatusCode(HttpStatus.BAD_REQUEST);
-        return writeErrorMessage(response, "Service Unavailable");
+        return response.writeWith(Mono.just(buffer));
     }
 
-    private Mono<Void> writeErrorMessage(ServerHttpResponse response, String msg) {
-        DataBuffer buffer = response.bufferFactory().wrap(msg.getBytes(UTF_8));
-        return response.writeWith(Mono.just(buffer));
+    private DataBuffer writeErrorMessage(ServerHttpResponse response, String msg) {
+        return response.bufferFactory().wrap(msg.getBytes(UTF_8));
     }
 }
