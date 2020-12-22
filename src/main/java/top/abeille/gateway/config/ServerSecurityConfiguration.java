@@ -29,11 +29,11 @@ import top.abeille.gateway.service.JdbcReactiveUserDetailsService;
  * @author liwenqiang 2019/7/12 17:51
  */
 @EnableWebFluxSecurity
-public class ServerSecurityConfig {
+public class ServerSecurityConfiguration {
 
     private final HypervisorApi hypervisorApi;
 
-    public ServerSecurityConfig(HypervisorApi hypervisorApi) {
+    public ServerSecurityConfiguration(HypervisorApi hypervisorApi) {
         this.hypervisorApi = hypervisorApi;
     }
 
