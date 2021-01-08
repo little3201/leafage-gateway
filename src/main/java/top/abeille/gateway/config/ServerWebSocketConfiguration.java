@@ -22,7 +22,7 @@ public class ServerWebSocketConfiguration {
     @Bean
     public HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put("/echo", new AbeilleWebSocketHandler());
+        map.put("/socket", new AbeilleWebSocketHandler());
 
         return new SimpleUrlHandlerMapping(map, -1);
     }
