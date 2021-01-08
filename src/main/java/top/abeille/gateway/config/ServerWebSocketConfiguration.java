@@ -2,7 +2,6 @@ package top.abeille.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
@@ -18,22 +17,14 @@ import java.util.Map;
  * @author liwenqiang 2020/12/22 15:51
  */
 @Configuration
-public class WebSocketConfiguration {
-
-    @Bean
-    public WebSocketHandler webSocketHandler() {
-        return new AbeilleWebSocketHandler();
-    }
+public class ServerWebSocketConfiguration {
 
     @Bean
     public HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put("/echo", webSocketHandler());
+        map.put("/echo", new AbeilleWebSocketHandler());
 
-        SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
-        mapping.setUrlMap(map);
-        mapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return mapping;
+        return new SimpleUrlHandlerMapping(map, -1);
     }
 
     @Bean
