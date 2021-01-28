@@ -1,11 +1,9 @@
-# Abeille
+# Leafage Gateway
 
 <p align="center">
  <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxto-blue.svg" alt="Coverage Status">
  <img src="https://img.shields.io/badge/Spring%20Boot-2.3.x-blue.svg" alt="Downloads">
 </p>
-
-## abeille-gateway
 
 #### 目标功能
 - [x] 服务路由
@@ -17,7 +15,7 @@
 
 |               依赖               |           版本            |           说明            |
 |:-------------------------------:|:-------------------------:|:-------------------------:|
-|      Spring Cloud Gateway       |           2.2.5           |           基础框架          |
-|       Spring Cloud Consul       |           2.2.4           |          使用consul        |
-|  Spring Security OAuth2 Client  |           2.3.4           |   表单、oauth2、csrf等安全   |    
-|        Spring Data Redis        |           2.3.4           |        Mongo、Redis        |
+|      Spring Cloud Gateway       |           3.0.0           |           基础框架          |
+|       Spring Cloud Consul       |           3.0.0           |          使用consul        |
+|         Spring Security         |           2.4.1           |            表单登录         |    
+|    Spring Data Redis Reactive   |           2.4.1           |        Mongo、Redis        |

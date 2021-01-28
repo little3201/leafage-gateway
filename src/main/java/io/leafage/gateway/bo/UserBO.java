@@ -1,13 +1,13 @@
 /*
  * Copyright © 2010-2019 Abeille All rights reserved.
  */
-package top.abeille.gateway.bo;
+package io.leafage.gateway.bo;
 
 import java.io.Serializable;
 import java.util.Set;
 
 /**
- * Model class for UserInfo
+ * BO class for User
  *
  * @author liwenqiang
  */

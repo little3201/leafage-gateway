@@ -1,9 +1,13 @@
 /*
  * Copyright (c) 2019. Abeille All Right Reserved.
  */
-package top.abeille.gateway.config;
+package io.leafage.gateway.config;
 
 
+import io.leafage.gateway.api.HypervisorApi;
+import io.leafage.gateway.handler.AbeilleFailureHandler;
+import io.leafage.gateway.handler.AbeilleSuccessHandler;
+import io.leafage.gateway.service.JdbcReactiveUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -18,10 +22,6 @@ import org.springframework.security.web.server.authentication.ServerAuthenticati
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.HttpStatusReturningServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
-import top.abeille.gateway.api.HypervisorApi;
-import top.abeille.gateway.handler.AbeilleFailureHandler;
-import top.abeille.gateway.handler.AbeilleSuccessHandler;
-import top.abeille.gateway.service.JdbcReactiveUserDetailsService;
 
 /**
  * spring security 配置
@@ -29,11 +29,11 @@ import top.abeille.gateway.service.JdbcReactiveUserDetailsService;
  * @author liwenqiang 2019/7/12 17:51
  */
 @EnableWebFluxSecurity
-public class ServerSecurityConfig {
+public class ServerSecurityConfiguration {
 
     private final HypervisorApi hypervisorApi;
 
-    public ServerSecurityConfig(HypervisorApi hypervisorApi) {
+    public ServerSecurityConfiguration(HypervisorApi hypervisorApi) {
         this.hypervisorApi = hypervisorApi;
     }
 
