@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2019. Abeille All Right Reserved.
  */
-package top.abeille.gateway.api;
+package io.leafage.gateway.api;
 
+import io.leafage.gateway.bo.UserBO;
 import reactor.core.publisher.Mono;
-import top.abeille.gateway.bo.UserBO;
 
 /**
  * 用户api

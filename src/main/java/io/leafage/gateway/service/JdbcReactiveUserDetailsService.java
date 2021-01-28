@@ -2,15 +2,15 @@
  * Copyright © 2010-2019 Abeille All rights reserved.
  */
 
-package top.abeille.gateway.service;
+package io.leafage.gateway.service;
 
+import io.leafage.gateway.api.HypervisorApi;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import reactor.core.publisher.Mono;
-import top.abeille.gateway.api.HypervisorApi;
 
 import java.util.Set;
 import java.util.stream.Collectors;
