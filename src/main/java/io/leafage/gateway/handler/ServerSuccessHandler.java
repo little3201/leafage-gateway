@@ -9,7 +9,7 @@ import org.springframework.security.web.server.WebFilterExchange;
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import reactor.core.publisher.Mono;
 
-public class AbeilleSuccessHandler implements ServerAuthenticationSuccessHandler {
+public class ServerSuccessHandler implements ServerAuthenticationSuccessHandler {
 
     @Override
     public Mono<Void> onAuthenticationSuccess(WebFilterExchange webFilterExchange, Authentication authentication) {

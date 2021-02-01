@@ -1,6 +1,6 @@
 package io.leafage.gateway.config;
 
-import io.leafage.gateway.handler.AbeilleWebSocketHandler;
+import io.leafage.gateway.handler.ServerWebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.HandlerMapping;
@@ -22,7 +22,7 @@ public class ServerWebSocketConfiguration {
     @Bean
     public HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put("/socket", new AbeilleWebSocketHandler());
+        map.put("/socket", new ServerWebSocketHandler());
 
         return new SimpleUrlHandlerMapping(map, -1);
     }

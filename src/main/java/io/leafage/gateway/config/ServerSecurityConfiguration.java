@@ -5,8 +5,8 @@ package io.leafage.gateway.config;
 
 
 import io.leafage.gateway.api.HypervisorApi;
-import io.leafage.gateway.handler.AbeilleFailureHandler;
-import io.leafage.gateway.handler.AbeilleSuccessHandler;
+import io.leafage.gateway.handler.ServerFailureHandler;
+import io.leafage.gateway.handler.ServerSuccessHandler;
 import io.leafage.gateway.service.JdbcReactiveUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -73,14 +73,14 @@ public class ServerSecurityConfiguration {
      * 登陆成功后执行的处理器
      */
     private ServerAuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new AbeilleSuccessHandler();
+        return new ServerSuccessHandler();
     }
 
     /**
      * 登陆失败后执行的处理器
      */
     private ServerAuthenticationFailureHandler authenticationFailureHandler() {
-        return new AbeilleFailureHandler();
+        return new ServerFailureHandler();
     }
 
 }

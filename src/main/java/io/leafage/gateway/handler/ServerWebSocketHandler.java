@@ -13,9 +13,9 @@ import reactor.core.publisher.Mono;
  *
  * @author liwenqiang 2020/12/22 15:53
  */
-public class AbeilleWebSocketHandler implements WebSocketHandler {
+public class ServerWebSocketHandler implements WebSocketHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(AbeilleWebSocketHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(ServerWebSocketHandler.class);
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
