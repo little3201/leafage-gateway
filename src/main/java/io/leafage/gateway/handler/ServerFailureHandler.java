@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class AbeilleFailureHandler implements ServerAuthenticationFailureHandler {
+public class ServerFailureHandler implements ServerAuthenticationFailureHandler {
 
     @Override
     public Mono<Void> onAuthenticationFailure(WebFilterExchange webFilterExchange, AuthenticationException exception) {
