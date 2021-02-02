@@ -7,14 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Controller
 public class CsrfTokenEndpoint {
 
-    @GetMapping("/csrf")
+    @GetMapping("/check")
     void csrfToken(ServerWebExchange exchange) {
         Mono<CsrfToken> csrfToken = exchange.getAttribute(CsrfToken.class.getName());
-        csrfToken.doOnSuccess(token ->
-                exchange.getResponse().addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken())
-                        .build())).then();
+        if (Objects.nonNull(csrfToken)) {
+            csrfToken.subscribe(token ->
+                    exchange.getResponse().addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken()).build()));
+        }
     }
 }
