@@ -13,11 +13,12 @@ import java.util.Objects;
 public class CsrfTokenEndpoint {
 
     @GetMapping("/check")
-    void csrfToken(ServerWebExchange exchange) {
+    Mono<Void> csrfToken(ServerWebExchange exchange) {
         Mono<CsrfToken> csrfToken = exchange.getAttribute(CsrfToken.class.getName());
         if (Objects.nonNull(csrfToken)) {
-            csrfToken.subscribe(token ->
-                    exchange.getResponse().addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken()).build()));
+            return csrfToken.doOnSuccess(token -> exchange.getResponse()
+                    .addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken()).build())).then();
         }
+        return Mono.empty();
     }
 }
