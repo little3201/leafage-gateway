@@ -17,7 +17,7 @@ public class CsrfTokenEndpoint {
         Mono<CsrfToken> csrfToken = exchange.getAttribute(CsrfToken.class.getName());
         if (Objects.nonNull(csrfToken)) {
             return csrfToken.doOnSuccess(token -> exchange.getResponse()
-                    .addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken()).build())).then();
+                    .addCookie(ResponseCookie.from(token.getHeaderName(), token.getToken()).httpOnly(true).build())).then();
         }
         return Mono.empty();
     }
