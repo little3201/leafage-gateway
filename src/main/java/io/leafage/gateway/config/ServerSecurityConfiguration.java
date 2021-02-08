@@ -61,7 +61,7 @@ public class ServerSecurityConfiguration {
         http.formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
                 .authenticationFailureHandler(authenticationFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
-                .csrf(c -> c.csrfTokenRepository(new CookieServerCsrfTokenRepository()))
+                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
                         .anyExchange().authenticated())
