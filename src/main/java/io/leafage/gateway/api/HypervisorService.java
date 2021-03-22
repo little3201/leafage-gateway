@@ -20,7 +20,7 @@ public class HypervisorService implements HypervisorApi {
     @Override
     public Mono<UserBO> findByUsername(String username) {
         Asserts.notBlank(username, "username");
-        return clientBuilder.build().get().uri("/user/details/{username}", username)
+        return clientBuilder.build().get().uri("/user/{username}/details", username)
                 .accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(UserBO.class);
     }
 }
