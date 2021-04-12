@@ -23,7 +23,6 @@ public class ServerWebSocketConfiguration {
     public HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
         map.put("/socket", new ServerWebSocketHandler());
-
         return new SimpleUrlHandlerMapping(map, -1);
     }
 
@@ -31,4 +30,5 @@ public class ServerWebSocketConfiguration {
     public WebSocketHandlerAdapter handlerAdapter() {
         return new WebSocketHandlerAdapter();
     }
+
 }
