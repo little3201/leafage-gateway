@@ -1,9 +1,9 @@
 package io.leafage.gateway.handler;
 
-import org.reactivestreams.Subscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.socket.WebSocketHandler;
+import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,15 +19,14 @@ public class ServerWebSocketHandler implements WebSocketHandler {
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
-        Mono<Void> input = session.receive()
-                .doOnNext(message -> logger.info("receive message: {}", message))
-                .concatMap(message -> {
-                    logger.info("receive message: {}", message);
-                    return Subscriber::onComplete;
+        // 返回给client的内容
+        Flux<WebSocketMessage> output = session.receive()
+                .concatMap(mapper -> {
+                    logger.info("receive message: {}", mapper.getPayloadAsText());
+                    // 设置返回消息给client
+                    return Flux.just(mapper.getPayloadAsText());
                 })
-                .then();
-        Flux<String> source = Flux.empty();
-        Mono<Void> output = session.send(source.map(session::textMessage));
-        return Mono.zip(input, output).then();
+                .map(session::textMessage);
+        return session.send(output);
     }
 }
