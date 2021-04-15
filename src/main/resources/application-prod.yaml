@@ -11,3 +11,9 @@ spring:
     host: smtp.163.com
     username: xx1@xx.com
     password: xx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
