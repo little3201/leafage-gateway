@@ -26,7 +26,7 @@ public class EmailService {
             helper.setFrom("little3201@163.com");
             helper.setTo(target);
             helper.setSubject("[Leafage] " + subject);
-            helper.setText(text);
+            helper.setText(text, true);
             this.javaMailSender.send(message);
         } catch (MailException | MessagingException ex) {
             log.error("Send email to {} error: ", target, ex);

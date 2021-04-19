@@ -65,6 +65,7 @@ public class ServerSecurityConfiguration {
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
                         .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/register").permitAll()
                         .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
