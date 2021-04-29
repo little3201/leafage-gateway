@@ -30,10 +30,11 @@ public class HypervisorService implements HypervisorApi {
     public Mono<UserBO> createUser(String email, String password) {
         Asserts.notBlank(email, "email");
         Asserts.notBlank(password, "password");
-        String username = email.substring(email.indexOf("@"));
+        String username = email.substring(0, email.indexOf("@"));
         UserBO userBO = new UserBO(username, email, new BCryptPasswordEncoder().encode(password));
         return clientBuilder.build().post().uri("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(userBO).retrieve().bodyToMono(UserBO.class);
     }
+
 }
