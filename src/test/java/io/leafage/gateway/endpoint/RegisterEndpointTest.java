@@ -28,10 +28,8 @@ class RegisterEndpointTest {
     @WithMockUser
     @Test
     void register() {
-        UserBO userBO = new UserBO();
-        userBO.setUsername("test");
-        Mockito.when(hypervisorApi.createUser("test", "li@163.com", "test"))
-                .thenReturn(Mono.just(userBO));
+        Mockito.when(hypervisorApi.createUser("li@163.com", "test"))
+                .thenReturn(Mono.just(Mockito.mock(UserBO.class)));
         webTestClient.mutateWith(csrf()).post().uri("/register").exchange().expectStatus().isOk();
     }
 }

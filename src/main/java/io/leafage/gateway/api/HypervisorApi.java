@@ -4,6 +4,7 @@
 package io.leafage.gateway.api;
 
 import io.leafage.gateway.bo.UserBO;
+import io.leafage.gateway.bo.UserDetailsBO;
 import reactor.core.publisher.Mono;
 
 /**
@@ -19,13 +20,14 @@ public interface HypervisorApi {
      * @param username 用户账号
      * @return 如果查询到数据，返回查询到的信息，否则返回204状态码
      */
-    Mono<UserBO> findByUsername(String username);
+    Mono<UserDetailsBO> findByUsername(String username);
 
     /**
-     * 根据传入的 username 查询信息
+     * 用户注册
      *
-     * @param username 用户账号
-     * @return 如果查询到数据，返回查询到的信息，否则返回204状态码
+     * @param email    邮箱
+     * @param password 密码
+     * @return 用户信息
      */
-    Mono<UserBO> createUser(String username, String email, String password);
+    Mono<UserBO> createUser(String email, String password);
 }
