@@ -18,13 +18,12 @@ public class RegisterEndpoint {
     /**
      * 用户注册
      *
-     * @param username 账户
      * @param email    邮箱
      * @param password 密码
      * @return 注册结果
      */
     @PostMapping("/register")
-    Mono<UserBO> register(String username, String email, String password) {
-        return hypervisorApi.createUser(username, email, password);
+    Mono<UserBO> register(String email, String password) {
+        return hypervisorApi.createUser(email, password);
     }
 }
