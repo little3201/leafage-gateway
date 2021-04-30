@@ -1,9 +1,9 @@
 package io.leafage.gateway.endpoint;
 
 import io.leafage.gateway.api.HypervisorApi;
-import io.leafage.gateway.bo.UserBO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -18,12 +18,16 @@ public class RegisterEndpoint {
     /**
      * 用户注册
      *
-     * @param email    邮箱
-     * @param password 密码
+     * @param exchange 请求体
      * @return 注册结果
      */
     @PostMapping("/register")
-    Mono<UserBO> register(String email, String password) {
-        return hypervisorApi.createUser(email, password);
+    Mono<Object> register(ServerWebExchange exchange) {
+        return exchange.getFormData().map((data) -> {
+            String email = data.getFirst("email");
+            String password = data.getFirst("password");
+            return hypervisorApi.createUser(email, password);
+        });
     }
+
 }
