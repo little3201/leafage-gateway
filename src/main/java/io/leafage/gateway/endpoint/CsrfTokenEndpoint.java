@@ -9,11 +9,16 @@ import reactor.core.publisher.Mono;
 
 import java.util.Objects;
 
+/**
+ * endpoint for csrf
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 @Controller
 public class CsrfTokenEndpoint {
 
     @GetMapping("/check")
-    Mono<Void> csrfToken(ServerWebExchange exchange) {
+    public Mono<Void> csrfToken(ServerWebExchange exchange) {
         Mono<CsrfToken> csrfToken = exchange.getAttribute(CsrfToken.class.getName());
         if (Objects.nonNull(csrfToken)) {
             return csrfToken.doOnSuccess(token -> exchange.getResponse()

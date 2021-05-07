@@ -8,7 +8,7 @@ import io.leafage.gateway.bo.UserDetailsBO;
 import reactor.core.publisher.Mono;
 
 /**
- * 用户api
+ * hypervisor interface .
  *
  * @author liwenqiang 2019-03-03 22:55
  **/

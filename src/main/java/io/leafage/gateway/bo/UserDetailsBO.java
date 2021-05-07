@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * BO class for User
+ * BO class for User details .
  *
- * @author liwenqiang
+ * @author liwenqiang 2019-03-03 22:55
  */
 public class UserDetailsBO implements Serializable {
 

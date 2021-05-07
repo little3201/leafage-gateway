@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+/**
+ * endpoint for register api .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 @RestController
 public class RegisterEndpoint {
 
@@ -22,8 +27,8 @@ public class RegisterEndpoint {
      * @return 注册结果
      */
     @PostMapping("/register")
-    Mono<Object> register(ServerWebExchange exchange) {
-        return exchange.getFormData().map((data) -> {
+    public Mono<Object> register(ServerWebExchange exchange) {
+        return exchange.getFormData().map(data -> {
             String email = data.getFirst("email");
             String password = data.getFirst("password");
             return hypervisorApi.createUser(email, password);

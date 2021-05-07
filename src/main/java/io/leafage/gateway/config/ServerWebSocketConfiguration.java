@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * webSocket 配置
+ * webSocket config .
  *
  * @author liwenqiang 2020/12/22 15:51
  */

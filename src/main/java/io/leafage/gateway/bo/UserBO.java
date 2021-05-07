@@ -2,6 +2,11 @@ package io.leafage.gateway.bo;
 
 import java.io.Serializable;
 
+/**
+ * BO class for User .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 public class UserBO implements Serializable {
 
     private static final long serialVersionUID = 3395523338048416407L;

@@ -11,6 +11,11 @@ import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * email service .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 @Service
 public class EmailService {
 
