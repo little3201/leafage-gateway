@@ -9,6 +9,11 @@ import reactor.core.publisher.Mono;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * failure handler .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 public class ServerFailureHandler implements ServerAuthenticationFailureHandler {
 
     @Override

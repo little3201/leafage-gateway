@@ -24,7 +24,7 @@ import org.springframework.security.web.server.authentication.logout.HttpStatusR
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 
 /**
- * spring security 配置
+ * spring security config .
  *
  * @author liwenqiang 2019/7/12 17:51
  */

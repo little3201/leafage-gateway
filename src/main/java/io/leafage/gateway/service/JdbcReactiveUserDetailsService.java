@@ -15,6 +15,11 @@ import reactor.core.publisher.Mono;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * user details service .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 public class JdbcReactiveUserDetailsService implements ReactiveUserDetailsService {
 
     private final HypervisorApi hypervisorApi;

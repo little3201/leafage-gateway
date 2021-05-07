@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * hypervisor api .
+ *
+ * @author liwenqiang 2019-03-03 22:55
+ */
 @Service
 public class HypervisorService implements HypervisorApi {
 
