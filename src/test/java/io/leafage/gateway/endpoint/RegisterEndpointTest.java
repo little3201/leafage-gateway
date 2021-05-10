@@ -12,8 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
+import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.csrf;
 
 @ExtendWith(SpringExtension.class)
@@ -29,9 +31,9 @@ class RegisterEndpointTest {
     @WithMockUser
     @Test
     void register() {
-        Mockito.when(hypervisorApi.createUser("li@163.com", "test"))
-                .thenReturn(Mono.just(Mockito.mock(UserBO.class)));
-        webTestClient.mutateWith(csrf()).post().uri("/register")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED).exchange().expectStatus().isOk();
+        given(hypervisorApi.createUser(Mockito.anyString(), Mockito.anyString())).willReturn(Mono.just(Mockito.mock(UserBO.class)));
+        webTestClient.mutateWith(csrf()).post().uri("/register").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .body(BodyInserters.fromFormData("email", "test@test.com").with("password", "123456"))
+                .exchange().expectStatus().isOk();
     }
 }

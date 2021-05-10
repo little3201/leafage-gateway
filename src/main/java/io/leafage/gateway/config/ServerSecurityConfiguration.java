@@ -39,6 +39,8 @@ public class ServerSecurityConfiguration {
 
     /**
      * 密码配置，使用BCryptPasswordEncoder
+     *
+     * @return BCryptPasswordEncoder 加密方式
      */
     @Bean
     protected PasswordEncoder passwordEncoder() {
@@ -47,6 +49,8 @@ public class ServerSecurityConfiguration {
 
     /**
      * 用户数据加载
+     *
+     * @return JdbcReactiveUserDetailsService 接口
      */
     @Bean
     public ReactiveUserDetailsService userDetailsService() {
