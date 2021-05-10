@@ -29,8 +29,6 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: GPG public key
-        run: gpg --keyserver hkp://keyserver.ubuntu.com:11371 --recv-keys 2EC278B9CD50D333272332E78B9EE407CA5745C2
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
