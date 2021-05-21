@@ -67,7 +67,7 @@ public class ServerSecurityConfiguration {
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
                 .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
-                        .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/assets/**", "/check", "/hypervisor/authority/tree").permitAll()
                         .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
                         .pathMatchers(HttpMethod.POST, "/register").permitAll()
                         .anyExchange().authenticated())
