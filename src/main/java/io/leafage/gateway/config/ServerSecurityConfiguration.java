@@ -18,8 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint;
-import org.springframework.security.web.server.authentication.ServerAuthenticationFailureHandler;
-import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.HttpStatusReturningServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 
@@ -62,8 +60,8 @@ public class ServerSecurityConfiguration {
      */
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.formLogin(f -> f.authenticationSuccessHandler(authenticationSuccessHandler())
-                .authenticationFailureHandler(authenticationFailureHandler()))
+        http.formLogin(f -> f.authenticationSuccessHandler(new ServerSuccessHandler())
+                .authenticationFailureHandler(new ServerFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
                 .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
@@ -73,20 +71,6 @@ public class ServerSecurityConfiguration {
                         .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
-    }
-
-    /**
-     * 登陆成功后执行的处理器
-     */
-    private ServerAuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new ServerSuccessHandler();
-    }
-
-    /**
-     * 登陆失败后执行的处理器
-     */
-    private ServerAuthenticationFailureHandler authenticationFailureHandler() {
-        return new ServerFailureHandler();
     }
 
 }
