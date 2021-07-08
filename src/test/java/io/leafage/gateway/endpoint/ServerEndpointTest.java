@@ -14,13 +14,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
-
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.csrf;
 
 @ExtendWith(SpringExtension.class)
-@WebFluxTest(controllers = RegisterEndpoint.class)
-class RegisterEndpointTest {
+@WebFluxTest(controllers = ServerEndpoint.class)
+class ServerEndpointTest {
 
     @Autowired
     private WebTestClient webTestClient;
