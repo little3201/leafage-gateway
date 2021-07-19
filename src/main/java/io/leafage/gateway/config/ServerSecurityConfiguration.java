@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint;
 import org.springframework.security.web.server.authentication.logout.HttpStatusReturningServerLogoutSuccessHandler;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 
 /**
  * spring security config .
@@ -44,6 +45,7 @@ public class ServerSecurityConfiguration {
         http.formLogin(f -> f.authenticationSuccessHandler(new ServerSuccessHandler())
                 .authenticationFailureHandler(new ServerFailureHandler())).cors(Customizer.withDefaults())
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
+                .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check", "/hypervisor/authority/tree").permitAll()
                         .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
