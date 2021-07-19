@@ -14,7 +14,7 @@
 
     <name>leafage-gateway</name>
     <description>Gateway for leafage</description>
-         
+
     <properties>
         <sonar.projectKey>little3201_leafage-gateway</sonar.projectKey>
         <sonar.organization>little3201</sonar.organization>
@@ -30,10 +30,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
         <!-- Spring security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,6 +42,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>

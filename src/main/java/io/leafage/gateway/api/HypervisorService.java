@@ -42,4 +42,9 @@ public class HypervisorService implements HypervisorApi {
                 .bodyValue(userBO).retrieve().bodyToMono(UserBO.class);
     }
 
+    @Override
+    public Mono<Boolean> updatePassword(String username, String newPassword) {
+        return null;
+    }
+
 }
