@@ -9,6 +9,7 @@ import io.leafage.gateway.handler.ServerSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,12 +42,12 @@ public class ServerSecurityConfiguration {
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.formLogin(f -> f.authenticationSuccessHandler(new ServerSuccessHandler())
-                .authenticationFailureHandler(new ServerFailureHandler()))
+                .authenticationFailureHandler(new ServerFailureHandler())).cors(Customizer.withDefaults())
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check", "/hypervisor/authority/tree").permitAll()
                         .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
-                        .pathMatchers(HttpMethod.POST, "/register").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/register", "/assets/comment").permitAll()
                         .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
