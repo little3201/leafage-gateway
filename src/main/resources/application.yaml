@@ -8,6 +8,9 @@ server:
 spring:
   profiles:
     active: dev
+  web:
+    resources:
+      add-mappings: false
 
   application:
     name: abeille-gateway
