@@ -1,8 +1,10 @@
 # Leafage Gateway
 
 <p align="center">
- <img src="https://img.shields.io/badge/Spring%20Cloud-2020.0.2-green.svg" alt="Coverage Status">
- <img src="https://img.shields.io/badge/Spring%20Boot-2.4.4-green.svg" alt="Downloads">
+ <img src="https://img.shields.io/badge/Spring%20Cloud-2020.0.3-green.svg" alt="Coverage Status">
+ <img src="https://img.shields.io/badge/Spring%20Boot-2.4.6-green.svg" alt="Downloads">
+ <img src="https://sonarcloud.io/api/project_badges/measure?project=little3201_leafage-gateway&metric=alert_status" alt="quality"/>
+ <img src="https://sonarcloud.io/api/project_badges/measure?project=little3201_leafage-gateway&metric=coverage" alt="coverage" />
 </p>
 
 leafage-gateway 是leafage的网关服务、所有后台服务接口都只能通过网关进行访问，它包含两部分：
