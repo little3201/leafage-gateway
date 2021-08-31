@@ -17,6 +17,11 @@ import reactor.core.publisher.Mono;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.csrf;
 
+/**
+ * 服务接口测试类
+ *
+ * @author liwenqiang 2021/8/30 17:04
+ */
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = ServerEndpoint.class)
 class ServerEndpointTest {
@@ -27,12 +32,14 @@ class ServerEndpointTest {
     @MockBean
     private HypervisorApi hypervisorApi;
 
-    @WithMockUser
     @Test
+    @WithMockUser
     void register() {
-        given(hypervisorApi.createUser(Mockito.anyString(), Mockito.anyString())).willReturn(Mono.just(Mockito.mock(UserBO.class)));
+        UserBO userBO = new UserBO("little3201", "test@leafage.top", "123456");
+        given(this.hypervisorApi.createUser(Mockito.anyString(), Mockito.anyString())).willReturn(Mono.just(userBO));
+
         webTestClient.mutateWith(csrf()).post().uri("/register").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .body(BodyInserters.fromFormData("email", "test@test.com").with("password", "123456"))
+                .body(BodyInserters.fromFormData("email", "test@leafage.top").with("password", "123456"))
                 .exchange().expectStatus().isOk();
     }
 }

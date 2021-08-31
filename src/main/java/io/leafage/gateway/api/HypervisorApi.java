@@ -31,12 +31,4 @@ public interface HypervisorApi {
      */
     Mono<UserBO> createUser(String email, String password);
 
-    /**
-     * 修改密码
-     *
-     * @param username    账号
-     * @param newPassword 新密码
-     * @return 操作结构
-     */
-    Mono<Boolean> updatePassword(String username, String newPassword);
 }

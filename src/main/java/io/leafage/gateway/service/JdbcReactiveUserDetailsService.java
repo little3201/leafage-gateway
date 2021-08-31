@@ -7,7 +7,6 @@ package io.leafage.gateway.service;
 import io.leafage.gateway.api.HypervisorApi;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.ReactiveUserDetailsPasswordService;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
  * @author liwenqiang 2019-03-03 22:55
  */
 @Service
-public class JdbcReactiveUserDetailsService implements ReactiveUserDetailsService, ReactiveUserDetailsPasswordService {
+public class JdbcReactiveUserDetailsService implements ReactiveUserDetailsService {
 
     private final HypervisorApi hypervisorApi;
 
@@ -46,22 +45,6 @@ public class JdbcReactiveUserDetailsService implements ReactiveUserDetailsServic
 
     private Set<GrantedAuthority> grantedAuthorities(Set<String> authorities) {
         return authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
-    }
-
-    @Override
-    public Mono<UserDetails> updatePassword(UserDetails user, String newPassword) {
-        return Mono.just(user)
-                .map(userDetails -> withNewPassword(userDetails, newPassword))
-                .map(userDetails -> {
-                    this.hypervisorApi.updatePassword(userDetails.getUsername(), userDetails.getPassword());
-                    return userDetails;
-                });
-    }
-
-    private UserDetails withNewPassword(UserDetails userDetails, String newPassword) {
-        return User.withUserDetails(userDetails)
-                .password(newPassword)
-                .build();
     }
 
 }
