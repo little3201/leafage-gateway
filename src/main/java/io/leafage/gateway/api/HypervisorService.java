@@ -17,11 +17,13 @@ import reactor.core.publisher.Mono;
 @Service
 public class HypervisorService implements HypervisorApi {
 
+    private static final String SCHEMA = "http://";
+    private static final String SERVER_NAME = "hypervisor";
+
     private final WebClient.Builder clientBuilder;
 
     public HypervisorService(WebClient.Builder clientBuilder) {
-        clientBuilder.baseUrl("http://hypervisor").build();
-        this.clientBuilder = clientBuilder;
+        this.clientBuilder = clientBuilder.baseUrl(SCHEMA + SERVER_NAME);
     }
 
     @Override
@@ -40,11 +42,6 @@ public class HypervisorService implements HypervisorApi {
         return clientBuilder.build().post().uri("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(userBO).retrieve().bodyToMono(UserBO.class);
-    }
-
-    @Override
-    public Mono<Boolean> updatePassword(String username, String newPassword) {
-        return null;
     }
 
 }

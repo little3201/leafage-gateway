@@ -8,7 +8,11 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-
+/**
+ * csrf 测试类
+ *
+ * @author liwenqiang 2021/8/30 17:04
+ */
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = CsrfTokenEndpoint.class)
 class CsrfTokenEndpointTest {

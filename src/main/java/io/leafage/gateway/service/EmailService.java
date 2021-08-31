@@ -6,7 +6,6 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -24,7 +23,7 @@ public class EmailService {
     @Resource
     private JavaMailSender javaMailSender;
 
-    public void sendEmail(String target, String subject, String text) {
+    public void send(String target, String subject, String text) {
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
