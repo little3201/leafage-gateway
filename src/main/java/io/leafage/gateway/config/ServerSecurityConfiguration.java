@@ -47,7 +47,7 @@ public class ServerSecurityConfiguration {
                 .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
-                        .pathMatchers(HttpMethod.PATCH, "/assets/posts/{code}/like").permitAll()
+                        .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
                         .pathMatchers(HttpMethod.POST, "/register", "/assets/comment").permitAll()
                         .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
