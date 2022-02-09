@@ -41,15 +41,15 @@ public class ServerSecurityConfiguration {
      */
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.formLogin(f -> f.authenticationSuccessHandler(new ServerSuccessHandler())
+        http.authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
+                        .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
+                        .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/assets/comment").permitAll()
+                        .anyExchange().authenticated())
+                .formLogin(f -> f.authenticationSuccessHandler(new ServerSuccessHandler())
                         .authenticationFailureHandler(new ServerFailureHandler()))
                 .logout(l -> l.logoutSuccessHandler(new HttpStatusReturningServerLogoutSuccessHandler()))
                 .csrf(c -> c.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
-                .authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
-                        .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
-                        .pathMatchers(HttpMethod.PATCH, "/assets/posts/{code}/like").permitAll()
-                        .pathMatchers(HttpMethod.POST, "/register", "/assets/comment").permitAll()
-                        .anyExchange().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
     }

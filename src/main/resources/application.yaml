@@ -1,6 +1,6 @@
 ##===== server port =====##
 server:
-  port: 8760
+  port: 80
   http2:
     enabled: true
 
