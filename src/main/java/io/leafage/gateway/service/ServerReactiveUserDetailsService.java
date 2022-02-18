@@ -13,11 +13,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -42,7 +42,7 @@ public class ServerReactiveUserDetailsService implements ReactiveUserDetailsServ
     @Override
     public Mono<UserDetails> findByUsername(String username) {
         Mono<Account> accountMono = accountRepository.getByUsername(username)
-                .switchIfEmpty(Mono.error(() -> new NoSuchElementException("User Not Found")));
+                .switchIfEmpty(Mono.error(() -> new UsernameNotFoundException("User Not Found")));
 
         Mono<Set<GrantedAuthority>> authoritiesMono = accountMono.map(account ->
                         accountRoleRepository.findByAccountIdAndEnabledTrue(account.getId())
@@ -51,13 +51,18 @@ public class ServerReactiveUserDetailsService implements ReactiveUserDetailsServ
                         .collect(HashSet::new, HashSet::add));
 
         // 构造用户信息
-        return accountMono.zipWith(authoritiesMono, (account, authorities) -> {
-            LocalDateTime now = LocalDateTime.now();
-            boolean isAccountNonExpired = account.getAccountExpiresAt().isAfter(now);
-            boolean isCredentialsNonExpired = account.getCredentialsExpiresAt().isAfter(now);
-            return new User(account.getUsername(), account.getPassword(), account.isEnabled(), isAccountNonExpired,
-                    isCredentialsNonExpired, !account.isAccountLocked(), authorities);
-        });
+        return accountMono.zipWith(authoritiesMono, (account, authorities) ->
+                new User(account.getUsername(), account.getPassword(), account.isEnabled(),
+                        this.nonExpired(account.getAccountExpiresAt()), this.nonExpired(account.getCredentialsExpiresAt()),
+                        !account.isAccountLocked(), authorities));
+    }
+
+    private boolean nonExpired(LocalDateTime dateTime) {
+        LocalDateTime now = LocalDateTime.now();
+        if (dateTime != null) {
+            return dateTime.isAfter(now);
+        }
+        return true;
     }
 
 }

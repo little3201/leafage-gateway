@@ -23,6 +23,6 @@ class CsrfTokenEndpointTest {
     @WithMockUser
     @Test
     void csrfToken() {
-        webTestClient.get().uri("/check").exchange().expectCookie().exists("_csrf");
+        webTestClient.get().uri("/check").exchange().expectStatus().isOk();
     }
 }
