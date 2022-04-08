@@ -7,17 +7,6 @@ spring:
       discovery:
         register: false
 
-  mail:
-    host: smtp.163.com
-    username: xx1@xx.com
-    password: xx
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
   ##=====mongodb config=====##
   data:
     mongodb:
