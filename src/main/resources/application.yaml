@@ -1,6 +1,6 @@
 ##===== server port =====##
 server:
-  port: 80
+  port: 8760
   http2:
     enabled: true
 
@@ -33,3 +33,12 @@ spring:
             - Path=/assets/**
           filters:
             - StripPrefix= 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'
+  metrics:
+    tags:
+      application: ${spring.application.name}
