@@ -13,7 +13,7 @@ spring:
       add-mappings: false
 
   application:
-    name: abeille-gateway
+    name: gateway
 
   cloud:
     gateway:

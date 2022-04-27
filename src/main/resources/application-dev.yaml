@@ -10,9 +10,9 @@ spring:
   ##=====mongodb config=====##
   data:
     mongodb:
-      host: 101.42.253.227
+      host: 127.0.0.1
       port: 27017
       database: hypervisor
-      username: leafage_hypervisor
-      password: 9hp23%+3dm>JUnbZ!CPt
+      username: hypervisor
+      password: xxxxx
       authentication-database: hypervisor
