@@ -42,6 +42,7 @@ public class ServerSecurityConfiguration {
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange(a -> a.pathMatchers(HttpMethod.OPTIONS).permitAll()
+                        .pathMatchers("/actuator/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/assets/**", "/check").permitAll()
                         .pathMatchers(HttpMethod.PATCH, "/assets/posts/{schema}/like").permitAll()
                         .pathMatchers(HttpMethod.POST, "/assets/comment").permitAll()
