@@ -1,8 +1,6 @@
-##===== server port =====##
 server:
   port: 8760
 
-##===== active profiles =====##
 spring:
   profiles:
     active: dev
@@ -16,15 +14,12 @@ spring:
   cloud:
     gateway:
       routes:
-        #-----------------------------------#
         - id: hypervisor_route
           uri: lb://hypervisor
           predicates:
             - Path=/hypervisor/**
           filters:
             - StripPrefix= 1
-
-        #-----------------------------------#
         - id: assets_route
           uri: lb://assets
           predicates:
