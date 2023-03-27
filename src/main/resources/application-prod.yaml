@@ -1,18 +1,7 @@
 spring:
   cloud:
-    ##===== consul configuration =====##
     consul:
       host: 127.0.0.1
       port: 8500
       discovery:
         register: false
-
-  ##=====mongodb config=====##
-  data:
-    mongodb:
-      host: 127.0.0.1
-      port: 123456
-      username: xxxx
-      password: xxxx
-      database: xxxx
-      authentication-database: xxxx
