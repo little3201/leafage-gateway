@@ -1,5 +1,5 @@
 # Start with a base image containing Java runtime
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jre-alpine
 
 # Add Maintainer Info
 LABEL maintainer="little3201@gmail.com"
@@ -18,7 +18,7 @@ EXPOSE 8760
 ARG JAR_FILE=target/${JAR_NAME}-${VERSION}.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} .
+COPY ${JAR_FILE} app.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-jar","leafage-gateway-0.1.0.jar","--spring.profiles.active=dev"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=prod"]
