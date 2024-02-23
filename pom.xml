@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~  Copyright 2018-2024 the original author or authors.
+  ~  Copyright 2018-2024 little3201.
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
   ~  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     <parent>
         <groupId>top.leafage</groupId>
         <artifactId>leafage-starter-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.3.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
