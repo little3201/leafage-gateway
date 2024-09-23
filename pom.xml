@@ -22,12 +22,13 @@
     <parent>
         <groupId>top.leafage</groupId>
         <artifactId>leafage-starter-parent</artifactId>
-        <version>0.3.1</version>
+        <version>0.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>leafage-gateway</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
 
     <name>leafage-gateway</name>
     <description>Gateway for leafage</description>
@@ -80,6 +81,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

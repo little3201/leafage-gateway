@@ -26,6 +26,18 @@ spring:
             - Path=/assets/**
           filters:
             - StripPrefix= 1
+        - id: exploiter_route
+          uri: lb://exploiter
+          predicates:
+            - Path=/generator/**
+          filters:
+            - StripPrefix= 1
+        - id: auth_route
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix= 1
 
 management:
   endpoints:
