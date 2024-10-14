@@ -11,34 +11,6 @@ spring:
   application:
     name: gateway
 
-  cloud:
-    gateway:
-      routes:
-        - id: hypervisor_route
-          uri: lb://hypervisor
-          predicates:
-            - Path=/hypervisor/**
-          filters:
-            - StripPrefix= 1
-        - id: assets_route
-          uri: lb://assets
-          predicates:
-            - Path=/assets/**
-          filters:
-            - StripPrefix= 1
-        - id: exploiter_route
-          uri: lb://exploiter
-          predicates:
-            - Path=/generator/**
-          filters:
-            - StripPrefix= 1
-        - id: auth_route
-          uri: lb://auth
-          predicates:
-            - Path=/auth/**
-          filters:
-            - StripPrefix= 1
-
 management:
   endpoints:
     web:

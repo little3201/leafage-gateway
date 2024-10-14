@@ -21,9 +21,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * 启动
+ * gateway application
  *
- * @author liwenqiang
+ * @author wqq li
  */
 @SpringBootApplication
 public class GatewayApplication {
