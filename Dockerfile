@@ -11,7 +11,7 @@ ARG VERSION=0.1.0
 # Add a volume pointing to /tmp
 VOLUME /tmp
 
-# Make port 8763 available to the world outside this container
+# Make port 8760 available to the world outside this container
 EXPOSE 8760
 
 # The application's jar file

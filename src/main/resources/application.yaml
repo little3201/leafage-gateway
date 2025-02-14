@@ -4,18 +4,49 @@ server:
 spring:
   profiles:
     active: dev
-  web:
-    resources:
-      add-mappings: false
-
   application:
     name: gateway
+  cloud:
+    gateway:
+      global-cors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://127.0.0.1:5173"
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+      routes:
+        - id: auth_route
+          uri: http://127.0.0.1:8761
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: hypervisor_route
+          uri: http://127.0.0.1:8762
+          predicates:
+            - Path=/hypervisor/**
+          filters:
+            - StripPrefix=1
+        - id: assets_route
+          uri: http://127.0.0.1:8764
+          predicates:
+            - Path=/assets/**
+          filters:
+            - StripPrefix=1
+        - id: exploiter_route
+          uri: http://127.0.0.1:8765
+          predicates:
+            - Path=/exploiter/**
+          filters:
+            - StripPrefix=1
 
 management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health
+        include: health,prometheus
   metrics:
     tags:
       application: ${spring.application.name}
