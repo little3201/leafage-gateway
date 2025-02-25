@@ -4,34 +4,14 @@ server:
 spring:
   profiles:
     active: dev
-  web:
-    resources:
-      add-mappings: false
-
   application:
     name: gateway
-
-  cloud:
-    gateway:
-      routes:
-        - id: hypervisor_route
-          uri: lb://hypervisor
-          predicates:
-            - Path=/hypervisor/**
-          filters:
-            - StripPrefix= 1
-        - id: assets_route
-          uri: lb://assets
-          predicates:
-            - Path=/assets/**
-          filters:
-            - StripPrefix= 1
 
 management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health
+        include: health,prometheus
   metrics:
     tags:
       application: ${spring.application.name}
